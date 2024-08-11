@@ -10,3 +10,12 @@ export const getTopicById = async ({ id }: { id: string }) => {
   })
   return topic
 }
+
+export const getTopicPrompt = async () => {
+  const payload = await getPayloadHMR({ config })
+  const topicPrompt = await payload.findGlobal({
+    slug: 'topicPrompt',
+  })
+
+  return topicPrompt
+}

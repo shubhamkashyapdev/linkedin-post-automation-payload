@@ -14,11 +14,16 @@
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
+    "@ai-sdk/google": "^0.0.35",
+    "@ai-sdk/openai": "^0.0.44",
+    "@langchain/core": "^0.2.23",
+    "@langchain/google-genai": "^0.0.25",
     "@payloadcms/db-mongodb": "beta",
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
     "@swc/core": "^1.7.10",
+    "ai": "^3.3.5",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "next": "15.0.0-canary.53",

@@ -2,6 +2,7 @@
 import React from 'react'
 import { useForm, useAllFormFields } from '@payloadcms/ui'
 import { getTopicById } from '@/actions/topic'
+import { generatePost } from '@/actions/post'
 
 const GeneratePost = ({ label, ...rest }: { label: string }) => {
   const [fields] = useAllFormFields()
@@ -19,15 +20,19 @@ const GeneratePost = ({ label, ...rest }: { label: string }) => {
       alert('Topic not found')
       return
     }
+    const generatedPost = await generatePost({
+      topic: topic.name,
+      description: topic.description,
+    })
     replaceState({
       postTopic: fields.postTopic,
       title: {
         ...fields.title,
-        value: topic.name,
+        value: generatedPost.title,
       },
       body: {
         ...fields.body,
-        value: topic.description,
+        value: generatedPost.body,
       },
     })
   }
