@@ -4,6 +4,7 @@ import config from '@payload-config'
 import { ChatGoogleGenerativeAI } from '@langchain/google-genai'
 import { HumanMessage } from '@langchain/core/messages'
 import { JsonOutputParser } from '@langchain/core/output_parsers'
+import { jsonrepair } from 'jsonrepair'
 
 const model = new ChatGoogleGenerativeAI({
   modelName: 'gemini-1.5-flash',
@@ -12,6 +13,7 @@ const model = new ChatGoogleGenerativeAI({
 type GeneratedPost = {
   title: string
   body: string
+  imageDescription: string
 }
 
 export const generatePost = async ({
@@ -36,7 +38,12 @@ export const generatePost = async ({
     }),
   ]
   const response = await model.invoke(input)
-  const parsedResponse = await parser.parse(response.content as string)
+  const content = response.content as string
+  console.log({ content })
+  // replace backticks or any other special character with '' to avoid breaking the json
+  const formattedContent = jsonrepair(content)
+  console.log({ formattedContent })
+  const parsedResponse = await parser.parse(formattedContent)
   return parsedResponse
 }
 

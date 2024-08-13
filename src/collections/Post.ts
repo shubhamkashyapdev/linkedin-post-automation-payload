@@ -33,6 +33,10 @@ export const Post: CollectionConfig = {
       required: true,
     },
     {
+      name: 'imageDescription',
+      type: 'textarea',
+    },
+    {
       name: 'image',
       type: 'upload',
       relationTo: 'media',

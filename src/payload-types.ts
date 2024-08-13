@@ -105,6 +105,7 @@ export interface Post {
   postTopic: string | Topic;
   title: string;
   body: string;
+  imageDescription?: string | null;
   image?: string | Media | null;
   updatedAt: string;
   createdAt: string;

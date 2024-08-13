@@ -34,6 +34,10 @@ const GeneratePost = ({ label, ...rest }: { label: string }) => {
         ...fields.body,
         value: generatedPost.body,
       },
+      imageDescription: {
+        ...fields.imageDescription,
+        value: generatedPost.imageDescription,
+      },
     })
   }
 
